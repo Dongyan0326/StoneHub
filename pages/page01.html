@@ -1,11 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>我的个人网站</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
 </head>
 <body>
-    
+    <div id="markdown-content"></div>
+    <script>
+        // Markdown文件的URL
+        const mdFileUrl = 'https://raw.githubusercontent.com/your-username/your-repo/main/articles/test.md';
+        
+        // 使用Fetch API加载Markdown文件
+        fetch(mdFileUrl)
+            .then(response => response.text())
+            .then(mdText => {
+                // 将Markdown转换为HTML
+                const html = marked.parse(mdText);
+                // 将HTML插入到页面中
+                document.getElementById('markdown-content').innerHTML = html;
+            })
+            .catch(error => console.error('加载Markdown文件失败:', error));
+    </script>
 </body>
 </html>
